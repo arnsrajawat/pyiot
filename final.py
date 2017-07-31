@@ -53,13 +53,13 @@ def job():
     encoders.encode_base64(part)
     part.add_header('Content-Disposition', "attachment; filename= %s" % filename)
     msg.attach(part)
-    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server = smtplib.SMTP('smtp.gmail.com', 587) #Establishing connection with gmail
     server.starttls()
-    server.login(fromaddr, "9942880143")
+    server.login(fromaddr, "9942880143") #Log in using gmail ID and password on gmail
     text = msg.as_string()
     server.sendmail(fromaddr, toaddrs, text)
-    server.quit()
-schedule.every(1).day.at("00:05").do(job)
+    server.quit() #Closing the connection
+schedule.every(1).day.at("00:05").do(job) #Scheduling the job
 
 
 
